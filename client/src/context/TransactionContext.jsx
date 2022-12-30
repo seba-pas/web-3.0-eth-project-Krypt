@@ -30,7 +30,7 @@ export const TransactionProvider = ({ children }) => {
   const [currentAccount, setCurrentAccount] = useState("");
   const [formData, setFormData] = useState({
     addressTo: "",
-    amount: "",
+    amount: 0,
     keyword: "",
     message: "",
   });
@@ -81,6 +81,8 @@ export const TransactionProvider = ({ children }) => {
       if (!ethereum) {
         return alert("Please install metamask");
       }
+      const { addressTo, amount, keyword, message } = formData;
+      getEthereumContract();
     } catch (error) {
       console.log(error);
       throw new Error("No Ethereum Object");

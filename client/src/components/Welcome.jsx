@@ -3,7 +3,7 @@ import { AiFillPlayCircle } from "react-icons/ai";
 import { SiEthereum } from "react-icons/si";
 import { BsInfoCircle } from "react-icons/bs";
 import Loader from "./Loader";
-import { TransactionContext } from "../context/TrasactionContext";
+import { TransactionContext } from "../context/TransactionContext";
 
 const commonStyles =
   "min-h-[70px] sm:px-0 px-2 sm:min-w-[120px] flex justify-center items-center border-[0.5px] border-gray-400 text-sm font-light text-white";
@@ -29,12 +29,12 @@ const Welcome = () => {
     handleChange,
   } = useContext(TransactionContext);
 
-  const handleSubmit = () => {
-    const { adressTo, amount, keyword, message } = formData;
+  const handleSubmit = (e) => {
+    const { addressTo, amount, keyword, message } = formData;
 
     e.preventDefault();
 
-    if (!adressTo || !amount || !keyword || !message) {
+    if (!addressTo || !amount || !keyword || !message) {
       return;
     }
     sendTransaction();
@@ -112,7 +112,7 @@ const Welcome = () => {
             handleChange={handleChange}
           />
           <div className="h-[1px] w-full bg-gray-400 my-2" />
-          {true ? (
+          {!true ? (
             <Loader />
           ) : (
             <button
