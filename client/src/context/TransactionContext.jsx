@@ -7,6 +7,20 @@ export const TransactionContext = React.createContext();
 
 const { ethereum } = window;
 
+const getEthereumContract = () => {
+  const provider = new ethers.providers.Web3Provider(ethereum);
+  const signer = provider.getSigner();
+  const transactionContract = new ethers.Contract(
+    contractAddress,
+    contractABI,
+    signer
+  );
+
+  console.log({
+    transactionContract,
+  });
+};
+
 export const TransactionProvider = ({ children }) => {
   const [currentAccount, setCurrentAccount] = useState("");
   const [formData, setFormData] = useState({
@@ -18,18 +32,6 @@ export const TransactionProvider = ({ children }) => {
 
   const handleChange = (e, name) => {
     setFormData((prevState) => ({ ...prevState, [name]: e.target.value }));
-  };
-  const getEthereumContract = async () => {
-    const provider = new ethers.providers.Web3Provider(ethereum);
-    const signer = provider.getSigner();
-
-    const transactionContract = new ethers.Contract({
-      contractAddress,
-      contractABI,
-      signer,
-    });
-
-    console.log(transactionContract);
   };
 
   const checkIfWalletIsConnected = async () => {
