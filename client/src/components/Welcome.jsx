@@ -34,13 +34,12 @@ const Welcome = () => {
     const { addressTo, amount, keyword, message } = formData;
 
     e.preventDefault();
-    console.log(addressTo, amount, keyword, message);
 
     if (!addressTo || !amount || !keyword || !message) {
       return;
     } else {
       sendTransaction();
-      Swal.fire("Congratulations", "Your transaction was sent", "success");
+      Swal.fire("Info", "confirm transaction in your metamask window", "info");
     }
   };
 
