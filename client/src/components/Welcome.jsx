@@ -33,9 +33,10 @@ const Welcome = () => {
     const { addressTo, amount, keyword, message } = formData;
 
     e.preventDefault();
+    console.log(addressTo, amount, keyword, message);
 
     if (!addressTo || !amount || !keyword || !message) {
-      return;
+      console.log("hola");
     }
     sendTransaction();
   };
@@ -86,6 +87,7 @@ const Welcome = () => {
             </div>
           </div>
         </div>
+
         <div className="p-5 sm:w-96 w-full flex flex-col justify-start items-center blue-glassmorphism ">
           <Input
             placeholder="Address to"
@@ -116,7 +118,7 @@ const Welcome = () => {
             <Loader />
           ) : (
             <button
-              type="button"
+              type="submit"
               onClick={handleSubmit}
               className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] rounded-full cursor-pointer"
             >
